@@ -1,3 +1,6 @@
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
+
 public class Main{
     public static void main(String[] args) {
         
@@ -9,8 +12,8 @@ public class Main{
         // HelloWorldPrinter helloWorldPrinter2 = new HelloWorldPrinter();
         // helloWorldPrinter2.start();
 
-        Print1To10 primtt = new Print1To10();
-        primtt.start();;
+        // Print1To10 primtt = new Print1To10();
+        // primtt.start();;
         
         // Print1To10 pp = new Print1To10();
         // pp.start();
@@ -24,11 +27,19 @@ public class Main{
         // Thread th = new Thread(new singleNumberv2(169));
         // th.start();
 
-        for(int i=1; i<=10; i++){
+        // for(int i=1; i<=10; i++){
+        //     singleNumberv2 sst = new singleNumberv2(i);
+        //     Thread th = new Thread(sst);
+        //     th.start();
+        // }
+
+        ExecutorService es = Executors.newFixedThreadPool(5);
+        for(int i=1;i<=50;i++){
             singleNumberv2 sst = new singleNumberv2(i);
-            Thread th = new Thread(sst);
-            th.start();
+            es.submit(sst);
         }
+
+        es.shutdown();
     }
 }
 
